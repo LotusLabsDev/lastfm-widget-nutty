@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
 <head>
-	<title>Configure</title>
+	<title>Configure Last.fm Widget</title>
 	<meta charset="UTF-8">
 	<link rel="shortcut icon" href="#" />
 	<link rel="stylesheet" href="./style.css" />
@@ -9,39 +9,23 @@
 
 <body>
 	<div id="mainContainer">
-		<div id="connectBox">
-			<div style="text-align: center;">
-				<img src="logo.webp" width="60%">
-			</div>
-			<label>
-				<br>
-				<span style="font-weight: 500;">Client ID</span>
-				<br>
-				<input type="text" id="client_id_box">
-				<br><br>
-				<span style="font-weight: 500;">Client Secret</span>
-				<br>
-				<input type="password" id="client_secret_box">
 
-				<br><br>
-
-				<button id="authorizeButton" onclick="RequestAuthorization()">Authorize</button>
-				<br><br>
-				<button id="instructionsButton" onclick="OpenInstructions()">Instructions</button>
+		<div id="panel">
+			<div id="headline">Last.fm Widget Setup</div>
+			<div id="subhead">Enter your API key and username to launch the overlay.</div>
+			<label class="fieldLabel" for="api_key_box">API Key</label>
+			<input type="text" id="api_key_box" placeholder="e.g. a1b2c3d4..." autocomplete="off">
+			<label class="fieldLabel" for="username_box">Username</label>
+			<input type="text" id="username_box" placeholder="your-lastfm-username" autocomplete="off">
+			<div id="optionalTitle">Optional settings</div>
+			<label class="fieldLabel" for="duration_box">Auto-hide after (seconds)</label>
+			<input type="number" id="duration_box" placeholder="Leave empty to keep visible" min="1" step="1">
+			<label id="toggleRow" for="hide_album_art_box">
+				<input type="checkbox" id="hide_album_art_box">
+				<span>Hide album art</span>
 			</label>
-		</div>
-		<div id="authorizationBox">
-			<label id="authorizationComplete">
-				<img src="logo.webp" width="60%">
-				<br>
-				<br>
-				<span style="font-weight: 500; font-size: 30px;">Authorization complete</span>
-				<br><br>
-				You now owe me money for all of my hard work.
-			</label>
-			<button id="copyURLButton" onclick="CopyToURL()">Click to copy URL</button>
-			<br><br>
-			<button id="donateButton" onclick="OpenDonationPage()">Donate out of guilt</button>
+			<button id="launchButton" onclick="LaunchWidget()">Launch Widget</button>
+			<button id="instructionsButton" onclick="OpenInstructions()">Get API Key</button>
 		</div>
 	</div>
 </body>
