@@ -1,33 +1,87 @@
 <!DOCTYPE html>
+<html lang="en">
 
 <head>
 	<title>Configure Last.fm Widget</title>
 	<meta charset="UTF-8">
-	<link rel="shortcut icon" href="#" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+	<link rel="icon" href="../images/lotus.svg" type="image/svg+xml" />
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="./style.css" />
 </head>
 
 <body>
-	<div id="mainContainer">
+	<div class="layout">
+		<h1 class="page-title">Now Playing Widget</h1>
 
-		<div id="panel">
-			<div id="headline">Last.fm Widget Setup</div>
-			<div id="subhead">Enter your API key and username to launch the overlay.</div>
-			<label class="fieldLabel" for="api_key_box">API Key</label>
-			<input type="text" id="api_key_box" placeholder="e.g. a1b2c3d4..." autocomplete="off">
-			<label class="fieldLabel" for="username_box">Username</label>
-			<input type="text" id="username_box" placeholder="your-lastfm-username" autocomplete="off">
-			<div id="optionalTitle">Optional settings</div>
-			<label class="fieldLabel" for="duration_box">Auto-hide after (seconds)</label>
-			<input type="number" id="duration_box" placeholder="Leave empty to keep visible" min="1" step="1">
-			<label id="toggleRow" for="hide_album_art_box">
-				<input type="checkbox" id="hide_album_art_box">
-				<span>Hide album art</span>
-			</label>
-			<button id="launchButton" onclick="LaunchWidget()">Launch Widget</button>
-			<button id="instructionsButton" onclick="OpenInstructions()">Get API Key</button>
+		<div class="split">
+			<section id="guide" class="split-col split-col--guide" aria-labelledby="guideTitle">
+				<h2 id="guideTitle" class="split-title">Guide</h2>
+				<ol class="guide-steps">
+					<li class="guide-step">
+						<p class="guide-step-heading"><span class="guide-step-num">1.</span> Last.fm</p>
+						<p class="guide-step-text">Create an account (or sign in). Connect Spotify under '<strong>Spotify Scrobbling</strong>' so listens scrobble to your profile.</p>
+						<div class="guide-box-row">
+							<a class="guide-box" href="https://www.last.fm/join" target="_blank" rel="noopener noreferrer">Last.fm</a>
+							<a class="guide-box" href="https://www.last.fm/settings/applications" target="_blank" rel="noopener noreferrer">Connect Spotify</a>
+						</div>
+					</li>
+					<li class="guide-step">
+						<p class="guide-step-heading"><span class="guide-step-num">2.</span> API Key</p>
+						<p class="guide-step-text">Create a Last.fm API account and copy your key. Fill in the form with the information below.</p>
+						<a class="guide-box guide-box--full" href="https://www.last.fm/api/account/create" target="_blank" rel="noopener noreferrer">Create API account</a>
+						<div class="guide-api-copy">
+							<div class="guide-copy-row">
+								<span class="guide-copy-label">Application name:</span>
+								<button type="button" class="guide-copy-trigger" data-copy="LotusLabs Last.fm Widget">LotusLabs Last.fm Widget</button>
+							</div>
+							<div class="guide-copy-row">
+								<span class="guide-copy-label">Application description:</span>
+								<button type="button" class="guide-copy-trigger" data-copy="OBS or browser overlay for Last.fm now playing. Read-only; no callback server.">Now Playing Widget for OBS.</button>
+							</div>
+							<div class="guide-copy-row">
+								<span class="guide-copy-label">Application homepage:</span>
+								<button type="button" class="guide-copy-trigger" data-copy="https://github.com/LotusLabsDev/lastfm-widget-nutty">https://github.com/LotusLabsDev/lastfm-widget-nutty</button>
+							</div>
+							<p class="guide-copy-hint">Click to copy</p>
+						</div>
+					</li>
+				</ol>
+			</section>
+
+			<div id="panel" class="split-col split-col--form">
+				<h2 class="split-title">Widget Config</h2>
+
+				<div class="form-section">
+					<label class="fieldLabel" for="username_box">Username</label>
+					<input type="text" id="username_box" placeholder="Username" autocomplete="off">
+				</div>
+
+				<div class="form-section">
+					<label class="fieldLabel" for="api_key_box">API key</label>
+					<input type="text" id="api_key_box" placeholder="API key" autocomplete="off">
+				</div>
+
+				<p class="optional-label">Optional</p>
+				<label class="fieldLabel" for="duration_box">Hide overlay after (seconds)</label>
+				<input type="number" id="duration_box" placeholder="Leave empty to stay visible" min="1" step="1">
+				<label class="check" for="hide_album_art_box">
+					<input type="checkbox" id="hide_album_art_box">
+					<span>Hide album art</span>
+				</label>
+				<button type="button" id="launchButton" onclick="LaunchWidget()">Open widget</button>
+				<!-- <button type="button" id="instructionsButton" class="btn-secondary" onclick="OpenInstructions()">API account page</button> -->
+			</div>
 		</div>
+
+		<footer id="siteFooter" class="foot">
+			<p>Original by <a href="https://nutty.gg" target="_blank" rel="noopener noreferrer">Nutty</a> · Last.fm adaptation by <a href="https://lotuslabs.dev" target="_blank" rel="noopener noreferrer">LotusLabs</a></p>
+			<p><a href="https://github.com/LotusLabsDev/lastfm-widget-nutty" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+		</footer>
 	</div>
+	<script src="./script.js"></script>
 </body>
 
-<script src="./script.js"></script>
+</html>

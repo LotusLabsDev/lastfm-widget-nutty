@@ -18,6 +18,12 @@ apiKeyBox.addEventListener("input", checkInputs);
 usernameBox.addEventListener("input", checkInputs);
 checkInputs();
 
+apiKeyBox.addEventListener("keydown", (event) => {
+    if (event.key === "Enter" && !launchButton.disabled) {
+        LaunchWidget();
+    }
+});
+
 function getBaseWidgetUrl() {
     const path = window.location.pathname
         .replace(/\/configure\/index\.html$/, "/")
@@ -69,4 +75,26 @@ durationBox.addEventListener("keydown", (event) => {
     if (event.key === "Enter" && !launchButton.disabled) {
         LaunchWidget();
     }
+});
+
+document.querySelectorAll(".guide-copy-trigger").forEach((btn) => {
+    btn.addEventListener("click", async () => {
+        const text = btn.getAttribute("data-copy") || btn.textContent.trim();
+        if (!text) return;
+        const prev = btn.textContent;
+        try {
+            await navigator.clipboard.writeText(text);
+            btn.classList.add("is-copied");
+            btn.textContent = "Copied";
+            setTimeout(() => {
+                btn.textContent = prev;
+                btn.classList.remove("is-copied");
+            }, 1200);
+        } catch (_) {
+            btn.textContent = "Couldn't copy";
+            setTimeout(() => {
+                btn.textContent = prev;
+            }, 1200);
+        }
+    });
 });
